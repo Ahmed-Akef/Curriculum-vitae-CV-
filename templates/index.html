@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ cv.name }} - {{ cv.title }} | Professional CV & Portfolio">
+    <title>{{ cv.name }} - {{ cv.title }}</title>
+    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='images/tab_icon.jpg') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">{{ cv.name.split()[0] }}</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-greeting">Hello, I'm</div>
+                    <h1 class="hero-name">{{ cv.name }}</h1>
+                    <h2 class="hero-title">{{ cv.title }}</h2>
+                    <p class="hero-tagline">{{ cv.tagline }}</p>
+
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <span>View My Work</span>
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="mailto:{{ cv.email }}" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://{{ cv.linkedin }}" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://{{ cv.github }}" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://{{ cv.website }}" target="_blank" class="social-link" title="Website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <div class="image-glow"></div>
+                        <img src="{{ url_for('static', filename='images/profile_main.jpg') }}" alt="{{ cv.name }}">
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll Down</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get To Know Me</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">{{ cv.about }}</p>
+
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="info-label">Location</span>
+                                <span class="info-value">{{ cv.location }}</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="info-label">Email</span>
+                                <span class="info-value">{{ cv.email }}</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <span class="info-label">Phone</span>
+                                <span class="info-value">{{ cv.phone }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-number">{{ cv.experience|length }}+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number">{{ cv.projects|length }}+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-number">{{ cv.skills|length }}+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">My Journey</span>
+                <h2 class="section-title">Work Experience</h2>
+            </div>
+
+            <div class="timeline">
+                {% for job in cv.experience %}
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">{{ job.period }}</div>
+                        <h3 class="timeline-title">{{ job.title }}</h3>
+                        <div class="timeline-company">{{ job.company }}</div>
+                        <p class="timeline-description">{{ job.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="section-header" style="margin-top: 80px;">
+                <span class="section-label">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+
+            <div class="education-grid">
+                {% for edu in cv.education %}
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="education-degree">{{ edu.degree }}</h3>
+                    <div class="education-institution">{{ edu.institution }}</div>
+                    <div class="education-period">{{ edu.period }}</div>
+                    <p class="education-description">{{ edu.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What I Do Best</span>
+                <h2 class="section-title">Skills & Expertise</h2>
+            </div>
+
+            <div class="skills-grid">
+                {% for skill in cv.skills %}
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-percentage">{{ skill.level }}%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--skill-level: {{ skill.level }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">My Portfolio</span>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+
+            <div class="projects-grid">
+                {% for project in cv.projects %}
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-name">{{ project.name }}</h3>
+                        <p class="project-description">{{ project.description }}</p>
+                        <div class="project-technologies">
+                            {% for tech in project.technologies %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Let's Connect</span>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's work together!</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
+                        vision.</p>
+
+                    <div class="contact-methods">
+                        <a href="mailto:{{ cv.email }}" class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="method-label">Email</div>
+                                <div class="method-value">{{ cv.email }}</div>
+                            </div>
+                        </a>
+
+                        <a href="tel:{{ cv.phone }}" class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="method-label">Phone</div>
+                                <div class="method-value">{{ cv.phone }}</div>
+                            </div>
+                        </a>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <div class="method-label">Location</div>
+                                <div class="method-value">{{ cv.location }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="cta-card">
+                        <h3>Ready to start a project?</h3>
+                        <p>Let's create something amazing together!</p>
+                        <a href="mailto:{{ cv.email }}" class="btn btn-primary btn-large">
+                            <span>Send Me a Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 {{ cv.name }}. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="mailto:{{ cv.email }}" class="footer-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://{{ cv.linkedin }}" target="_blank" class="footer-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://{{ cv.github }}" target="_blank" class="footer-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
